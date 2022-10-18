@@ -137,6 +137,7 @@ DURATIONS = {
   'JFK' => {}
 }
 
+airports = []
 airports << Airport.create(code: 'LGW', name: "London Gatwick")
 airports << Airport.create(code: 'EDI', name: "Edinburgh")
 airports << Airport.create(code: 'GLA', name: "Glasgow")
@@ -157,20 +158,24 @@ def get_duration(origin, destination)
   DURATIONS[origin][destination] || DURATIONS[destination][origin]
 end
 
-# Date.today.upto(Date.today + 365).each do |date|
-#   airports.each do |origin|
-#     airports.each do |destination|
-#       next if origin == destination
+def random_minute
+  rand(60 * 24)
+end
 
-#       3.times { Flight.create(date: date,
-#                               time: random_time,
-#                               origin: origin,
-#                               destination: destination,
-#                               duration: get_duration(origin.code, destination.code))
-#                 }
-#     end
-#   end
-# end
-# def random_minute
-#   rand(60 * 24)
-# end
+Date.today.upto(Date.today + 60).each do |date|
+  airports.each do |origin|
+    airports.each do |destination|
+      next if origin == destination
+
+      3.times do
+        Flight.create(
+          flight_date: date,
+          flight_time: random_minute,
+          origin: origin,
+          destination: destination,
+          duration: get_duration(origin.code, destination.code)
+        )
+      end
+    end
+  end
+end

@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  flight_date: 2022-10-18
+  flight_time: 1
+  origin_id: 1
+  destination_id: 1
+  duration: 1
+
+two:
+  flight_date: 2022-10-18
+  flight_time: 1
+  origin_id: 1
+  destination_id: 1
+  duration: 1
