@@ -1,8 +1,8 @@
 <%= form_with url: root_path, method: :get do |form| %>
-  <%= form.select :origin, options_for_select(@airports) %>
-  <%= form.select :destination, options_for_select(@airports) %>
-  <%= form.select :date, options_for_select(@dates) %>
-  <%= form.select :%>
+  <%= form.select :origin, options_for_select(@airports), prompt: "From..." %>
+  <%= form.select :destination, options_for_select(@airports), prompt: "To..." %>
+  <%= form.select :date, options_for_select(@dates), prompt: "When?" %>
+  <%= form.select :passenger_count, (1..4), prompt: "How many people?" %>
   <%= form.submit "Search flights" %>
 <% end %>
 
