@@ -1,0 +1,21 @@
+<%= form_with url: root_path, method: :get do |form| %>
+  <%= form.select :origin, options_for_select(@airports) %>
+  <%= form.select :destination, options_for_select(@airports) %>
+  <%= form.select :date, options_for_select(@dates) %>
+  <%= form.select :%>
+  <%= form.submit "Search flights" %>
+<% end %>
+
+<div>
+  <% @flights.by_time.each do |flight| %>
+    <div>
+      <%= "#{(flight.flight_time) / 60}:#{(flight.flight_time) % 60}" %>
+    </div>
+    <div>
+      <%= "#{flight.origin.name} (#{flight.origin.code}) - #{flight.destination.name} (#{flight.destination.code})" %>
+    </div>
+    <div>
+
+    </div>
+  <% end %>
+</div>
