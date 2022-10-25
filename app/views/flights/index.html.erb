@@ -1,21 +1,27 @@
 <%= form_with url: root_path, method: :get do |form| %>
-  <%= form.select :origin, options_for_select(@airports), prompt: "From..." %>
-  <%= form.select :destination, options_for_select(@airports), prompt: "To..." %>
-  <%= form.select :date, options_for_select(@dates), prompt: "When?" %>
-  <%= form.select :passenger_count, (1..4), prompt: "How many people?" %>
+  <%= form.select :origin, options_for_select(@airports, params[:origin]), prompt: "From..." %>
+  <%= form.select :destination, options_for_select(@airports, params[:destination]), prompt: "To..." %>
+  <%= form.select :date, options_for_select(@dates, params[:date]), prompt: "When?" %>
+  <%= form.select :passenger_count, options_for_select(1..4, params[:passenger_count]), prompt: "How many people?" %>
   <%= form.submit "Search flights" %>
 <% end %>
 
-<div>
-  <% @flights.by_time.each do |flight| %>
+<% if @flights %>
+  <%= form_with url: new_booking_path, method: :get do |form| %>
+    <%= form.hidden_field :passenger_count, value: params[:passenger_count] %>
     <div>
-      <%= "#{(flight.flight_time) / 60}:#{(flight.flight_time) % 60}" %>
+        <% @flights.by_time.each do |flight| %>
+          <label>
+            <%= form.radio_button :flight_id, flight.id %>
+            <div>
+              <%= flight.human_time %>
+            </div>
+            <div>
+              <%= "#{flight.origin.name} (#{flight.origin.code}) - #{flight.destination.name} (#{flight.destination.code})" %>
+            </div>
+          </label>
+        <% end %>
     </div>
-    <div>
-      <%= "#{flight.origin.name} (#{flight.origin.code}) - #{flight.destination.name} (#{flight.destination.code})" %>
-    </div>
-    <div>
-
-    </div>
+    <%= form.submit "Continue" %>
   <% end %>
-</div>
+<% end %>
