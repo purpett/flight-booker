@@ -1,19 +1,25 @@
 <div>
-  <%= @booking.flight_id %>
+  Flight <%= @booking.flight_id %>
   <div>
     <div>
+      From 
       <%= @booking.flight.origin.code %>
       <%= @booking.flight.origin.name %>
     </div>
     <div>
+      To
       <%= @booking.flight.destination.code %>
       <%= @booking.flight.destination.name %>
     </div>
+    <div>
+      Departure time: 
+      <%= @booking.flight.human_time %>
+    </div>
   </div>
+  Passengers:
   <% @booking.passengers.each do |p| %>
     <div>
       <%= p.name %>
-      <%= p.email %>
     </div>
   <% end %>
 </div>

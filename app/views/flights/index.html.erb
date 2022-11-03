@@ -1,5 +1,5 @@
 <%= form_with url: root_path, method: :get do |form| %>
-  <%= form.select :origin, options_for_select(@airports, params[:origin]), prompt: "From..." %>
+  <%= form.select :origin, options_for_select(@airports, params[:origin]), :required => true, prompt: "From..." %>
   <%= form.select :destination, options_for_select(@airports, params[:destination]), prompt: "To..." %>
   <%= form.select :date, options_for_select(@dates, params[:date]), prompt: "When?" %>
   <%= form.select :passenger_count, options_for_select(1..4, params[:passenger_count]), prompt: "How many people?" %>

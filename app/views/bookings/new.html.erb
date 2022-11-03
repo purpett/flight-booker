@@ -5,11 +5,11 @@
         <h3>Passenger <%= sub_form.index + 1 %></h3>
         <div>
           <%= sub_form.label :name %>
-          <%= sub_form.text_field :name %>
+          <%= sub_form.text_field :name, :required => true %>
         </div>
         <div>
           <%= sub_form.label :email %>
-          <%= sub_form.text_field :email %>
+          <%= sub_form.text_field :email, :required => true %>
         </div>
       <% end %>
     <%= f.submit %>
