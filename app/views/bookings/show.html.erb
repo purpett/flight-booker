@@ -1,0 +1,19 @@
+<div>
+  <%= @booking.flight_id %>
+  <div>
+    <div>
+      <%= @booking.flight.origin.code %>
+      <%= @booking.flight.origin.name %>
+    </div>
+    <div>
+      <%= @booking.flight.destination.code %>
+      <%= @booking.flight.destination.name %>
+    </div>
+  </div>
+  <% @booking.passengers.each do |p| %>
+    <div>
+      <%= p.name %>
+      <%= p.email %>
+    </div>
+  <% end %>
+</div>
