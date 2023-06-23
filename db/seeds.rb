@@ -162,7 +162,9 @@ def random_minute
   rand(60 * 24)
 end
 
-Date.today.upto(Date.today + 60).each do |date|
+Date.today.upto(Date.today + 365).each do |date|
+  puts date
+  
   airports.each do |origin|
     airports.each do |destination|
       next if origin == destination
